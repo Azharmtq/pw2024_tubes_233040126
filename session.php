@@ -13,9 +13,9 @@ function setSessionIfLoggedIn($key, $value) {
 function isLoggedIn() {
     // Anda dapat menentukan logika autentikasi di sini
     // Misalnya, Anda dapat memeriksa apakah ada session 'username' atau tidak
-    return isset($_SESSION['username']);
+    return isset( $_SESSION['user_email']);
 }
 
 // Contoh penggunaan
-setSessionIfLoggedIn('username', 'Guest');
+setSessionIfLoggedIn('user_email', 'john@gmail.com');
 ?>
