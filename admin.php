@@ -7,7 +7,8 @@
   <?php include 'includes/navbar.php' ?>
   <div class="admin_page container-fluid">
   <h3>KONTEN</h3>
-  <table class="table table-dark table-responsive">
+  <div class="table-responsive">
+  <table class="table table-dark">
   <thead class="thead-dark">
     <tr>
       <th scope="col">ID</th>
@@ -34,8 +35,10 @@
     </tr>
   </tbody>
 </table>
+</div>
 <h3>DATA USER</h3>
-<table class="table table-dark table-responsive">
+<div class="table-responsive">
+<table class="table table-dark">
   <thead class="thead-dark">
     <tr>
       <th scope="col" class="bg-dark">ID</th>
@@ -80,6 +83,7 @@
     ?>
   </tbody>
 </table>
+</div>
 <a href="tambah_user.php" class="btn btn-success">Tambah User</a>
 </div>
   <?php include 'includes/footer.php' ?>
