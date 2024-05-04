@@ -11,7 +11,7 @@
         <a class="nav-link" href="">Layanan</a>
         <a class="nav-link" href="login.php">Login</a>
       </div>
-      <form class="indexer d-flex" role="search">
+      <form class="indexer" role="search">
           <input class="form-control me-2 bg-white" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-success" type="submit">Cari</button>
         </form>

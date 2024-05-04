@@ -5,9 +5,9 @@
 </head> 
 <body>
   <?php include 'includes/navbar.php' ?>
-  <div class="container-fluid">
+  <div class="admin_page container-fluid">
   <h3>KONTEN</h3>
-  <table class="test table">
+  <table class="table table-dark table-responsive">
   <thead class="thead-dark">
     <tr>
       <th scope="col">ID</th>
@@ -35,14 +35,14 @@
   </tbody>
 </table>
 <h3>DATA USER</h3>
-<table class="table">
+<table class="table table-dark table-responsive">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Email</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">AKSI</th>
+      <th scope="col" class="bg-dark">ID</th>
+      <th scope="col" class="bg-dark">Email</th>
+      <th scope="col" class="bg-dark">First Name</th>
+      <th scope="col" class="bg-dark">Last Name</th>
+      <th scope="col" class="bg-dark">AKSI</th>
     </tr>
   </thead>
   <tbody>
@@ -57,13 +57,13 @@
         while($row = mysqli_fetch_assoc($result)) {
             // Tampilkan data pengguna dalam baris tabel
             echo "<tr>";
-            echo "<th scope='row'>" . $row['id'] . "</th>";
-            echo "<td>" . $row['email'] . "</td>";
-            echo "<td>" . $row['first_name'] . "</td>";
-            echo "<td>" . $row['last_name'] . "</td>";
-            echo "<td>";
-            echo "<a href='edit_user.php?id=" . $row['id'] . "'>Ubah| </a>";
-            echo "<a href='hapus_user.php?id=" . $row['id'] . "'> |Hapus</a>";
+            echo "<th scope='row' class='table-success'>" . $row['id'] . "</th>";
+            echo "<td class='table-success'>" . $row['email'] . "</td>";
+            echo "<td class='table-success'>" . $row['first_name'] . "</td>";
+            echo "<td class='table-success'>" . $row['last_name'] . "</td>";
+            echo "<td class='aksi table-success'>";
+            echo "<a href='edit_user.php?id=" . $row['id'] . "' class='table-success'><i class='fa fa-file'></i></a>";
+            echo "<a href='hapus_user.php?id=" . $row['id'] . "' class='table-success'><i class='fa fa-trash'></i></a>";
             echo "</td>";
             echo "</tr>";
         }
