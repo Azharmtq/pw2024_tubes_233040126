@@ -6,6 +6,7 @@
 <body>
   <?php include 'includes/navbar.php' ?>
   <div class="admin_page container-fluid">
+    <div class="admin_content container-md">
   <h3>KONTEN</h3>
   <div class="table-responsive">
   <table class="table table-dark">
@@ -36,6 +37,7 @@
   </tbody>
 </table>
 </div>
+<a href="tambah_konten.php" class="btn btn-success">Tambah Konten</a>
 <h3>DATA USER</h3>
 <div class="table-responsive">
 <table class="table table-dark">
@@ -85,6 +87,7 @@
 </table>
 </div>
 <a href="tambah_user.php" class="btn btn-success">Tambah User</a>
+</div>
 </div>
   <?php include 'includes/footer.php' ?>
   <?php include 'script.php' ?>

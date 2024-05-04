@@ -5,6 +5,10 @@ html {
 a, th, td, h1,h3,h4,h5,h6 {
     font-family: "Poppins";
 }
+h3{
+    display:flex;
+    place-content: center;
+}
 /* navbar */
 .navbar {
     font-family: "Poppins";
@@ -102,15 +106,21 @@ background-size: cover;
 }
 /* admin Page */
 .admin_page {
-    background-color: rgb(108, 126, 108);
+    background-image: url('/assets/img/logo.jpg');
     color: white;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .admin_page h3 {
-    padding-top: 100px;
+    padding-top: 10px;
+    font-family: "Poppins";
+    font-weight: 1000;
+    color: rgba(0, 0, 0, 0.5);
 }
-h3{
-    display:flex;
-    place-content: center;
+.admin_content {
+    background-color: rgb(255, 255, 255,0.5);
+    backdrop-filter: blur(10px);
 }
 .aksi {
     display: flex;
