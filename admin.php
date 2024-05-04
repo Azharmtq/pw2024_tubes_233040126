@@ -15,6 +15,7 @@
       <th scope="col">Konten</th>
       <th scope="col">URL</th>
       <th scope="col">Tanggal Upload</th>
+      <th scope="col">Gambar</th>
       <th scope="col">AKSI</th>
     </tr>
   </thead>
@@ -25,6 +26,7 @@
       <td>Isi konten</td>
       <td>URL SUMBER</td>
       <td>Tanggal Upload</td>
+      <td>Gambar</td>
       <td>
         <a href="">Ubah</a>
         <a href="">hapus</a>
@@ -60,8 +62,8 @@
             echo "<td>" . $row['first_name'] . "</td>";
             echo "<td>" . $row['last_name'] . "</td>";
             echo "<td>";
-            echo "<a href='edit_user.php?id=" . $row['id'] . "'>Ubah</a>";
-            echo "<a href='hapus_user.php?id=" . $row['id'] . "'>Hapus</a>";
+            echo "<a href='edit_user.php?id=" . $row['id'] . "'>Ubah| </a>";
+            echo "<a href='hapus_user.php?id=" . $row['id'] . "'> |Hapus</a>";
             echo "</td>";
             echo "</tr>";
         }
@@ -78,6 +80,7 @@
     ?>
   </tbody>
 </table>
+<a href="tambah_user.php" class="btn btn-success">Tambah User</a>
 </div>
   <?php include 'includes/footer.php' ?>
   <?php include 'script.php' ?>
