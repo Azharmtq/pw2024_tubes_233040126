@@ -1,4 +1,6 @@
-
+<audio class="audio_Player" controls loop autoplay>
+  <source src="assets/audio/2.mp3" type="audio/mp3">
+</audio>
 <div class="footer container-fluid">
     <div class="social container-fluid">
         <a href="https://github.com/Azharmtq" target="_blank"><i class="fa fa-github" ></i></a>
