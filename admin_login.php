@@ -1,9 +1,7 @@
 <?php
-session_start();
 if (isset($_POST["submit"])) {
   if ($_POST["username"] == "Azhar" && $_POST["password"] == "126") {
       $_SESSION["username"] = $_POST["username"];
-      $_SESSION['role'] = 'admin';
       echo "<script>window.location.href = 'admin.php';</script>";
       exit;
   } else {

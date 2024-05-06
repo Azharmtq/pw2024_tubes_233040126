@@ -1,6 +1,5 @@
 <?php
 include 'koneksi.php';
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // terima form yang dikirim
     $first_name = $_POST['first_name'];

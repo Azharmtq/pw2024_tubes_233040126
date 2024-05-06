@@ -1,5 +1,5 @@
 <?php
-include 'koneksi.php';
+include './koneksi.php';
 
 // Periksa apakah ID pengguna telah disediakan dalam URL
 if(isset($_GET['id'])) {

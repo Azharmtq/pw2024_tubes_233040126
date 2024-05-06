@@ -1,22 +1,4 @@
 <?php 
-session_start();
-// Periksa apakah ada sesi yang aktif
-
-if(isset($_SESSION['username'])) {
-
-    // Periksa apakah pengguna memiliki peran sebagai admin
-    if($_SESSION['role'] === 'admin') {
-        // Lanjutkan ke konten admin
-    } else {
-        // Jika pengguna bukan admin, kembalikan ke halaman login admin
-        header("Location: admin_login.php");
-        exit;
-    }
-} else {
-    // Jika tidak ada sesi aktif, kembalikan ke halaman login admin
-    header("Location: admin_login.php");
-    exit;
-}
 ?>
 <!doctype html>
 <html>

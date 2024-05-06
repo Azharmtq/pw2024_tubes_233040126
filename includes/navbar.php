@@ -1,8 +1,9 @@
 <?php
+session_start();
 // Inisialisasi variabel teks pengguna
 $user_text = '';
 // Periksa apakah ada sesi yang aktif
-if(isset($_SESSION['user_email'])) {
+if(isset($_SESSION['email'])) {
     // Jika pengguna biasa, tampilkan first_name
     $user_text = $_SESSION['first_name'];
 } elseif(isset($_SESSION['username'])) {

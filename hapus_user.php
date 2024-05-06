@@ -1,6 +1,6 @@
 <?php
 // Sertakan file koneksi.php untuk menghubungkan ke database
-include 'koneksi.php';
+include './koneksi.php';
 
 // Periksa apakah parameter id pengguna yang akan dihapus telah diterima dari URL
 if(isset($_GET['id'])) {
@@ -22,4 +22,4 @@ if(isset($_GET['id'])) {
 }
 
 // Tutup koneksi database
-mysqli_close($koneksi);?>
+mysqli_close($koneksi);
