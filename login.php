@@ -1,107 +1,62 @@
 <?php
-// session_start();
+session_start();
+include 'koneksi.php'; // Pastikan ini adalah path yang benar ke file koneksi database Anda
+define('BASE_URL', 'http://localhost/ujicoba/');
+$error = '';
 
-// if (isset($_POST["submit"])) {
-//     $email = $_POST["email"];
-//     $password = $_POST["password"];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-//     // Buat koneksi ke database
-//     include './koneksi.php';
+    // Query ke database untuk mencari user dengan username yang diberikan
+    $query = "SELECT username_user, password_user FROM users WHERE username_user = ?";
+    $stmt = mysqli_prepare($koneksi, $query);
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $username_user, $password_user);
+    mysqli_stmt_fetch($stmt);
+    mysqli_stmt_close($stmt);
 
-//     // Query untuk memeriksa keberadaan pengguna berdasarkan email dan password
-//     $query = "SELECT * FROM users WHERE email=? AND password=?";
-//     $stmt = mysqli_prepare($koneksi, $query);
+    // Verifikasi password
+    if (password_verify($password, $password_user)) {
+        // Setel sesi sebagai user
+        $_SESSION['user_logged_in'] = true;
+        $_SESSION['role'] = 'user';
+        $_SESSION['username'] = $username_user;
 
-//     if ($stmt) {
-//         mysqli_stmt_bind_param($stmt, "ss", $email, $password);
-//         mysqli_stmt_execute($stmt);
-//         $result = mysqli_stmt_get_result($stmt);
-        
-//         if ($row = mysqli_fetch_assoc($result)) {
-//             // Jika pengguna ditemukan, buat sesi
-//             $_SESSION["email"] = $email;
-//             $_SESSION["first_name"] = $row['first_name'];
-            
-//             // Redirect ke halaman yang sesuai
-//             header("Location: index.php");
-//             exit;
-//         } else {
-//             // Jika pengguna tidak ditemukan, set flag error untuk ditampilkan kepada pengguna
-//             $error = true;
-//         }
-//     } else {
-//         // Jika query gagal, set flag error untuk ditampilkan kepada pengguna
-//         $error1 = true;
-//     }
-
-//     // Tutup koneksi database
-//     mysqli_close($koneksi);
-// }
-if (isset($_POST["submit"])) {
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-
-    // Buat koneksi ke database
-    include './koneksi.php';
-
-    // Query untuk memeriksa keberadaan pengguna berdasarkan email dan password
-    $query = "SELECT * FROM users WHERE email='$email' AND password='$password'";
-    $result = mysqli_query($koneksi, $query);
-    
-    if ($result) {
-        $row = mysqli_fetch_assoc($result);
-        if ($row) {
-            // Jika pengguna ditemukan, buat sesi
-            $_SESSION["email"] = $email;
-            $_SESSION["first_name"] = $row['first_name'];
-            
-            // Redirect ke halaman yang sesuai
-            header("Location: index.php");
-            exit;
-        } else {
-            // Jika pengguna tidak ditemukan, tampilkan pesan kesalahan
-            $error = true;
-        }
+        header("Location: index.php"); // Asumsikan ada halaman dashboard untuk user
+        exit();
     } else {
-        // Jika query gagal, tampilkan pesan kesalahan
-        $error = true;
+        $error = 'Username atau password salah!';
     }
-
-    // Tutup koneksi database
-    mysqli_close($koneksi);
 }
 ?>
 
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <?php include './meta.php'?>
+<?php include 'meta.php';?>
 </head>
 <body>
-<?php include 'includes/navbar.php' ?>
-  <div class="login_page container-fluid">
-    <form class="login_form" method="post">
-      <h4 style="display:flex; place-content: center;">Sudah register?</h4>
-      <?php if (isset($error)) : ?>
-            <p style="display:flex; place-content: center;">Email atau password Anda salah.</p>
-        <?php endif; ?>
-    <div>
-      <label for="email" class="form-label">Email address</label>
-      <input type="email" id="email" name="email" required>
+    <div class="form container-fluid">
+        <form method="post">
+            <div class="form_place container-lg" style="margin: 1% auto; width: 90%; padding: 1%;">
+                <h1>Login User</h1>
+                <?php if ($error): ?>
+                    <p style="color: red;"><?php echo $error; ?></p>
+                <?php endif; ?>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" style="text-align: center; width: 60%; margin: 0 auto;" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" style="text-align: center; width: 60%; margin: 0 auto;" required>
+                <div style="display: flex; justify-content: space-evenly; flex-wrap: wrap; flex-direction: row; margin-top: 10px;">
+                <input type="submit" value="Login" class="btn btn-success" style="font-size: larger; width: fit-content;">
+                <a href="<?php echo BASE_URL; ?>index.php" class="btn btn-primary" style="font-size: larger; width: fit-content; place-content: center;">Home</a>
+                </div>
+                
+            </div>
+        </form>
     </div>
-    <div>
-      <label for="password" class="form-label">Password</label>
-      <input type="password" id="password" name="password" required>
-    </div>
-    <div class="login_submit">
-    <button type="submit" name="submit" class="login btn btn-success">Login</button>
-    <a href="register.php" class="btn btn-success">Register</a>
-    </div>
-    <a href="index.php" style="display:flex; place-content: center;">Kembali ke halaman utama</a>
-    <a href="admin_login.php" style="display:flex; place-content: center;">Admin?</a>
-    </form>
-  </div>
-  <?php include 'includes/footer.php' ?>
-  <?php include 'script.php' ?>
+    <?php include 'script.php';?>
 </body>
 </html>

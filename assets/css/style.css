@@ -1,134 +1,122 @@
-/* Default CSS */
-html {
-    background-color: rgb(20, 23, 20);
+/* default style */
+ * {
+    font-family: "Poppins", sans-serif;
+    --bs-navbar-hover-color: #1bb46d;
 }
-a, th, td, h1,h3,h4,h5,h6 {
-    font-family: "Poppins";
+.active{
+    --bs-pagination-active-bg: #198754;
 }
-h3{
-    display:flex;
-    place-content: center;
-}
-/* navbar */
-.navbar {
-    font-family: "Poppins";
-    font-weight: 500;
-    background: rgb(27, 53, 27);
-}
-
-.navbar a{
+/* Navbar */
+.navbar a {
     color: white;
 }
-.navbar a:hover{
-    color: rgb(111, 225, 111);
+
+.musikco:hover {
+    color: #198754;
 }
 
-.indexer {
-    display: flex;
-}
-.collapse {
-    display: flex;
-    flex-basis: max-content;
-    place-content: space-between;
-}
-
-/* footer */
-.footer {
-    font-family: "Poppins";
-    font-weight: 500;
-    background: rgb(27, 53, 27);
-    color: white;
+.search_bar {
     display: flex;
     gap: 10px;
-    flex-direction: column;
 }
-
-.social {
+/* admin */
+ h1 {
     display: flex;
     place-content: center;
-    gap: 20px;
-    font-size: 50px;
+    padding-top: 20px;
 }
-
-.social a {
-    color: white;
-}
-
-.copyright {
+a.l-konten {
+    margin: auto;
     display: flex;
     place-content: center;
+    font-size: larger;
 }
-/* audio */
-
-/* Login Page */
-.login_page {
-width: fit-content;
-height: 100vh;
-background-image: url('../img/login-bg.jpg');
-background-repeat: no-repeat;
-background-size: cover;
+.option {
+    width: max-content;
 }
-
-.login_form {
-    width: 100vh;
-    margin: auto;
-    height: 100vh;
-    background-color: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    padding-top: 10vh;
-    border-radius: 10px;
-    font-family: "Poppins";
-    font-weight: 500;
-}
-.login_form div{    
-    display: flex;
-    flex-direction: column;
-    place-content: center;
-    margin: auto;
-    gap: 1vh;
-}
-.login_form div input{
-    width: 80vh;
-    margin: auto;
-    border:none;
-    border-bottom: 1px solid black;
-    background-color: rgba(255, 255, 255, 0);
-}
-.login_form div label{
-    padding-top: 5vh;
-    margin: auto;
-}
-.login_form .login_submit{
-    padding-top: 10vh;
-    margin: auto;
-    flex-direction: row
-}
-
-.login_submit * {
+tr td img {
     width: 100px;
+    height:auto;
 }
-/* admin Page */
-.admin_page {
-    background-image: url('/assets/img/logo.jpg');
-    color: white;
-    background-size: cover;
+
+.form {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    place-content: center;
+    flex-direction: column;
+    background-image: url(../img/login-bg.jpg);
     background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    color: black;
 }
-.admin_page h3 {
-    padding-top: 10px;
-    font-family: "Poppins";
-    font-weight: 1000;
-    color: rgba(0, 0, 0, 0.5);
-}
-.admin_content {
-    background-color: rgb(255, 255, 255,0.5);
-    backdrop-filter: blur(10px);
-}
-.aksi {
+.form div{
     display: flex;
-    flex-direction: row;
+    place-content: center;
+    flex-direction: column;
+    gap: 0;
+    font-size: 20px;
+}
+
+.form div input {
+    width: 100%;
+    min-height: 60px;
+}
+.form div label, .form h2{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    place-content: center;
+}
+
+.form_place {
+    background-color: rgba(255, 255, 255, 0.507);
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5%;
+    margin: 10%;
+    height: 100vh;
+}
+
+.form_place a{
+    width: fit-content;;
+}
+
+.list_user {
+    width: 100%;
+    height: fit-content;
+    display: flex;
     gap: 10px;
 }
-/* fonts */
+/* footer */
+.footer {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    font-style: normal;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+.footer .social {
+    display: flex;
+    place-content: center;
+}
+.footer a  svg{
+    fill: white;
+    scale: 2;
+    margin: 20px;
+}
+.footer a {
+    color: rgba(1, 1, 1, 0);
+}
+.copyright p{
+    text-align: center;
+}
+
+
+/* font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');

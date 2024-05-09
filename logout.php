@@ -1,11 +1,5 @@
 <?php
 session_start();
-// Hapus semua data sesi
-session_unset();
-
-// Hapus sesi dari penyimpanan
 session_destroy();
-
-// Redirect kembali ke halaman utama
-header("Location: index.php");
+header("Location: login.php"); // Sesuaikan redirect location sesuai kebutuhan
 exit();
