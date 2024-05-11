@@ -52,6 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div style="display: flex; justify-content: space-evenly; flex-wrap: wrap; flex-direction: row; margin-top: 10px;">
                 <input type="submit" value="Login" class="btn btn-success" style="font-size: larger; width: fit-content;">
                 <a href="<?php echo BASE_URL; ?>index.php" class="btn btn-primary" style="font-size: larger; width: fit-content; place-content: center;">Home</a>
+                <a href="<?php echo BASE_URL; ?>admin/admin.php" class="btn btn-primary" style="font-size: larger; width: fit-content; place-content: center;">admin</a>
                 </div>
                 
             </div>
