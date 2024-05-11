@@ -1,7 +1,7 @@
 function search() {
     var search = document.getElementById("searchInput").value;
     window.location.href = "?search=" + search;
-}
+};
 var audio = document.getElementById('audioPlayer');
 
         function playAudio() {
@@ -16,4 +16,4 @@ var audio = document.getElementById('audioPlayer');
             // Ganti sumber audio dan mainkan
             audio.src = 'nextaudiofile.mp3';
             audio.play();
-        }
+        };

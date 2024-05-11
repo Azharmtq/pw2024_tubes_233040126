@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Definisikan basis URL
-define('BASE_URL', 'http://localhost/ujicoba/'); // Sesuaikan dengan URL aplikasi Anda
+define('BASE_URL', 'http://localhost/PW2024_TUBES_233040126/'); // Sesuaikan dengan URL aplikasi Anda
 // Cek apakah pengguna sudah login dan apakah role-nya adalah admin
 if (!isset($_SESSION['user_logged_in']) || $_SESSION['role'] !== 'admin') {
     header("Location: ./login.php"); // Asumsi login.php berada di luar folder admin

@@ -1,6 +1,6 @@
 <?php
 // Definisikan basis URL
-define('BASE_URL', 'http://localhost/ujicoba/'); // Sesuaikan dengan URL aplikasi Anda
+define('BASE_URL', 'http://localhost/PW_TUBES_233040126/'); // Sesuaikan dengan URL aplikasi Anda
 include 'koneksi.php';
 ?>
 <!DOCTYPE html>

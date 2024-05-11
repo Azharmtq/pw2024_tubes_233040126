@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'koneksi.php'; // Pastikan ini adalah path yang benar ke file koneksi database Anda
-define('BASE_URL', 'http://localhost/ujicoba/');
+define('BASE_URL', 'http://localhost/PW2024_TUBES_233040126/');
 
 $error = '';
 
@@ -47,11 +47,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <p style="color: red;"><?php echo $error; ?></p>
                 <?php endif; ?>
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
+                <input type="text" id="username" name="username" style="text-align: center; width: 60%; margin: 0 auto;" required>
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-                <input type="submit" value="Login" class="btn btn-success" style="font-size: larger;">
-                <a href="<?php echo BASE_URL; ?>index.php" class="btn btn-primary" style="font-size: larger;">kembali ke home</a>
+                <input type="password" id="password" name="password" style="text-align: center; width: 60%; margin: 0 auto;" required>
+                <div style="display: flex; justify-content: space-evenly; align-items: center; flex-direction: row; width: 60%; margin: 10px auto;">
+                <input type="submit" value="Login" class="btn btn-success" style="font-size: larger; width: fit-content;">
+                <a href="<?php echo BASE_URL; ?>index.php" class="btn btn-primary" style="font-size: larger; width: fit-content; place-content: center; height: 100%;">Home</a>
+                </div>
             </div>
         </form>
     </div>

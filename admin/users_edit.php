@@ -59,6 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" value="" required><br>
         <button type="submit" class="btn btn-success" style="font-size: 20px; font-weight: bold;">Update</button>
+        <a href="<?php echo BASE_URL; ?>admin/admin.php" class="btn btn-primary" style="font-size: larger;">kembali</a>
         </div>
     </form>
     </div>

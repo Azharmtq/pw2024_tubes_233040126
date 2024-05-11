@@ -1,5 +1,6 @@
 <?php
 include 'koneksi.php';
+define('BASE_URL', 'http://localhost/PW2024_TUBES_233040126/');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
@@ -48,6 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
             <input type="submit" value="Tambahkan">
+            <a href="<?php echo BASE_URL; ?>admin/admin.php" class="btn btn-primary" style="font-size: larger;">kembali</a>
+            <a href="<?php echo BASE_URL; ?>admin/admin_add.php" class="btn btn-primary" style="font-size: larger;">tambah admin</a>
             </div>
         </form>
     </div>

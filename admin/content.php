@@ -2,6 +2,7 @@
 session_start();
 include 'koneksi.php';
 // Fungsi untuk mendapatkan jumlah total data konten
+define('BASE_URL', 'http://localhost/PW2024_TUBES_233040126/');
 function getTotalContentCount($koneksi, $search = null) {
     $query = "SELECT COUNT(*) AS total FROM content";
     if ($search) {
@@ -44,6 +45,11 @@ $offset = ($page - 1) * $limit;
 
 // Mendapatkan data konten untuk halaman saat ini
 $content = getContent($koneksi, $offset, $limit, $search);
+
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+error_reporting(E_ALL); 
+ini_set('display_errors', 1);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +58,6 @@ $content = getContent($koneksi, $offset, $limit, $search);
 </head>
 <body>
     <?php include '../include/navbar.php';?>
-    
     <div class="container-fluid">
         <div class="row">
             <div class="container">

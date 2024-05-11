@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Definisikan basis URL
-define('BASE_URL', 'http://localhost/ujicoba/'); // Sesuaikan dengan URL aplikasi Anda
+define('BASE_URL', 'http://localhost/PW2024_TUBES_233040126/'); // Sesuaikan dengan URL aplikasi Anda
 include 'koneksi.php';
 // Fungsi untuk mendapatkan jumlah total data konten
 function getTotalContentCount($koneksi, $search = null) {
@@ -53,6 +53,9 @@ $content = getContent($koneksi, $offset, $limit, $search);
     <?php include 'meta.php';?>
 </head>
 <body>
+<div id="preloader">
+    <div class="spinner"></div>
+</div>
     <?php include './include/navbar.php';?>
     
     <div class="container-fluid container-lg">
@@ -118,6 +121,12 @@ $content = getContent($koneksi, $offset, $limit, $search);
     window.location.href = "?limit=" + limit;
     }
     </script> -->
+    <script>
+        window.addEventListener('load', function() {
+            var preloader = document.getElementById('preloader');
+            preloader.style.display = 'none';
+        });
+    </script>
 </body>
 </html>
 </html>
