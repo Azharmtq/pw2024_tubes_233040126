@@ -9,6 +9,8 @@
     z-index: 9999; /* Pastikan preloader berada di atas semua konten lain */
 }
 
+
+
 .spinner {
     position: absolute;
     top: 50%;
@@ -24,6 +26,11 @@
     0% { transform: translate(-50%, -50%) rotate(0deg); }
     100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
+
+body {
+    min-height: 100vh;
+}
+
 /* default style */
  * {
     font-family: "Poppins", sans-serif;

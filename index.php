@@ -7,7 +7,7 @@ include 'koneksi.php';
 function getTotalContentCount($koneksi, $search = null) {
     $query = "SELECT COUNT(*) AS total FROM content";
     if ($search) {
-        $query .= " WHERE content_title LIKE '%$search%'";
+        $query .= " WHERE content_title LIKE '%$search%' OR content_musik LIKE '%$search%'";
     }
     $result = mysqli_query($koneksi, $query);
     $row = mysqli_fetch_assoc($result);
@@ -18,7 +18,7 @@ function getTotalContentCount($koneksi, $search = null) {
 function getContent($koneksi, $offset, $limit, $search = null) {
     $query = "SELECT * FROM content";
     if ($search) {
-        $query .= " WHERE content_title LIKE '%$search%'";
+        $query .= " WHERE content_title LIKE '%$search%' OR content_musik LIKE '%$search%'";
     }
     $query .= " LIMIT $offset, $limit";
     $result = mysqli_query($koneksi, $query);
@@ -128,5 +128,4 @@ $content = getContent($koneksi, $offset, $limit, $search);
         });
     </script>
 </body>
-</html>
 </html>

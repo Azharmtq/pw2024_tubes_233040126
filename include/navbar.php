@@ -8,7 +8,7 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
 <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="light">
   <div class="container-fluid">
     <a class="musikco nav-brand" href="<?php echo BASE_URL; ?>index.php">MUSIKCO</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler bg-success" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -29,7 +29,7 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
                 </li> -->
             <?php endif; ?>
             <li class="nav-item">
-                <a class="nav-link" href="profile.php"><?php echo htmlspecialchars($username); ?></a>
+                <a class="nav-link" href="<?php echo BASE_URL; ?>profile.php"><?php echo htmlspecialchars($username); ?></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="logout.php">Logout</a>
