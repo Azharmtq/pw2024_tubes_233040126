@@ -24,54 +24,43 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `musik`
+-- Table structure for table `admin`
 --
 
-CREATE TABLE `musik` (
-  `musik_id` int NOT NULL,
-  `user_id` int DEFAULT NULL,
-  `nama_file` varchar(255) NOT NULL,
-  `upload_date` date NOT NULL,
-  `thumbnail_name` varchar(255) DEFAULT NULL
+CREATE TABLE `admin` (
+  `admin_id` int NOT NULL,
+  `admin_username` varchar(255) NOT NULL,
+  `admin_password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `musik`
+-- Dumping data for table `admin`
 --
 
-INSERT INTO `musik` (`musik_id`, `user_id`, `nama_file`, `upload_date`, `thumbnail_name`) VALUES
-(6, NULL, 'DJ CANTIK MASHA AND THE BEAR.mp3', '2024-05-13', 'masha.jpg');
+INSERT INTO `admin` (`admin_id`, `admin_username`, `admin_password`) VALUES
+(1, 'admin', '$2y$10$9Vh9WM4lhM7l19HbZsR9zucWaRsPPL3EbWywvpEnjLkA/OKEbWvbW'),
+(2, 'azhar', '$2y$10$lKwEOvGNEGsvgI5RwjJ/J.lABbNIgF0AT.ERHNPuIO4zs45zV./Ay');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `musik`
+-- Indexes for table `admin`
 --
-ALTER TABLE `musik`
-  ADD PRIMARY KEY (`musik_id`),
-  ADD KEY `user_id` (`user_id`);
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`admin_id`),
+  ADD UNIQUE KEY `admin_username` (`admin_username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `musik`
+-- AUTO_INCREMENT for table `admin`
 --
-ALTER TABLE `musik`
-  MODIFY `musik_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `musik`
---
-ALTER TABLE `musik`
-  ADD CONSTRAINT `musik_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+ALTER TABLE `admin`
+  MODIFY `admin_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

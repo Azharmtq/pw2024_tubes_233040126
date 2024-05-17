@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 11, 2024 at 07:13 AM
+-- Generation Time: May 16, 2024 at 07:26 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -38,8 +38,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `admin_username`, `admin_password`) VALUES
-(1, 'admin', '$2y$10$vGxyQfyG8yux9LBWecA4S.m.IZxFIRl.gfWCiXU0EWmHat/ckfn7.'),
-(2, 'azhar', '$2y$10$mnb2FxfVHU9CRgrpyTN8PeGIbRUm.zf5v/e0L7iJw4Z7ncuLto5wa');
+(1, 'admin', '$2y$10$9Vh9WM4lhM7l19HbZsR9zucWaRsPPL3EbWywvpEnjLkA/OKEbWvbW'),
+(2, 'azhar', '$2y$10$lKwEOvGNEGsvgI5RwjJ/J.lABbNIgF0AT.ERHNPuIO4zs45zV./Ay');
 
 -- --------------------------------------------------------
 
@@ -76,7 +76,29 @@ INSERT INTO `content` (`content_id`, `content_title`, `content_musik`, `content_
 (12, 'Macklemore Rilis MV Lagu Bela Palestina, Dicap Sensitif oleh YouTube', 'Jakarta, CNN Indonesia -- Macklemore merilis video musik untuk lagu Hind\'s Hall yang menyuarakan dukungan terhadap Palestina dan kecaman untuk Amerika hingga Israel atas serangan di Jalur Gaza.\r\nVideo musik itu dirilis di YouTube pada Rabu (8/5) dan telah ditonton lebih dari 735 ribu kali. Namun, MV itu juga mendapat catatan konten sensitif dari YouTube ketika pertama kali dibuka.', 'https://www.cnnindonesia.com/hiburan/20240509120447-227-1095729/macklemore-rilis-mv-lagu-bela-palestina-dicap-sensitif-oleh-youtube', 'macklemore_169.jpeg', '2024-05-11', '2024-05-10'),
 (13, 'Konser di Suhu 8 Derajat Celcius', 'TEMPO.CO, Jakarta - Winter Concert yang diselenggarakan Imaginaction bersama Jakarta Experience Board (Jxb) pada awal Juni mendatang akan menjadi konser bersalju pertama di Indonesia. Tidak hanya itu, suhu dalam ruangan yang mencapai 8 derajat celcius akan memberikan pengalaman tersendiri bagi para penonton maupun musisi yang tampil dalam konser bertema “Experience of Cold and Happiness” ini. \r\n\r\n“Ide untuk membuat Winter Concert ini karena ingin membuat sesuatu yang baru,” ucap Dino Hamid selaku Creator & Founder Imaginaction menjawab pertanyaan pembuka pada konferensi pers Winter Concert yang diadakan di Trans Snow World Bintaro pada Selasa, 7 Mei 2024. Lokasi dilangsungkannya konferensi pers kemarin juga akan menjadi tempat konser yang mengusung konsep unik dan membawa angin segar pada dunia pertunjukan Indonesia.', 'https://seleb.tempo.co/read/1865601/konser-di-suhu-8-derajat-celcius-berikut-line-up-dan-daftar-harga-tiket-winter-concert?tracking_page_direct', 'winter.jpg', '2024-05-11', '2024-05-08'),
 (14, 'Winter Concert, Konser di Atas Salju Pertama di Indonesia, Dino Hamid Ungkap Tantangannya', 'TEMPO.CO, Jakarta - Dino Hamid, dalang di balik berbagai konser dengan konsep unik dan menarik, kembali hadir dengan ide segar yang out of the box untuk pagelaran konser Tanah Air pada tahun ini. Winter Concert, konser pertama di Indonesia yang digelar di dalam ruangan dengan hamparan salju dan atmosfer bersuhu 8 derajat celcius pada 7-8 Juni 2024. \r\n\r\nMengenai ide uniknya, Creator & Founder Imaginaction tersebut mengungkapkan keinginannya untuk memberi kebaruan di dunia pertunjukan. “Pascapandemi semua orang membuat berbagai macam pertunjukan, jadi saya ingin buat alternatif yang bisa dinikmati secara pengalaman, baik musisinya dan penontonnya,” ujar Dino Hamid dalam konferensi pers di Trans Snow World Bintaro pada 7 Mei 2024. Terletak di dalam Trans Park Mall Bintaro, lokasi konferensi pers ini nantinya juga akan menjadi tempat pelaksanaan konser.', 'https://seleb.tempo.co/read/1865357/winter-concert-konser-di-atas-salju-pertama-di-indonesia-dino-hamid-ungkap-tantangannya?tracking_page_direct', 'winter2.jpg', '2024-05-11', '2024-05-08'),
-(15, 'ini ujicoba last aja\"🗿🗿🗿\"', 'mungkin saya kurang sih di bagian design', 'inimah pribadi banget', 'logo.jpg', '2024-05-09', '2024-05-09');
+(15, 'ini ujicoba last aja', 'mungkin saya kurang sih di bagian design', 'inimah pribadi banget', 'apakah.jpg', '2024-05-09', '2024-05-09'),
+(16, 'masha', '\"masha\"', 'test', 'masha.jpg', '2024-05-14', '2024-05-14');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `musik`
+--
+
+CREATE TABLE `musik` (
+  `musik_id` int NOT NULL,
+  `user_id` int DEFAULT NULL,
+  `nama_file` varchar(255) NOT NULL,
+  `upload_date` date NOT NULL,
+  `thumbnail_name` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `musik`
+--
+
+INSERT INTO `musik` (`musik_id`, `user_id`, `nama_file`, `upload_date`, `thumbnail_name`) VALUES
+(6, NULL, 'DJ CANTIK MASHA AND THE BEAR.mp3', '2024-05-13', 'masha.jpg');
 
 -- --------------------------------------------------------
 
@@ -96,18 +118,19 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username_user`, `email_user`, `password_user`) VALUES
-(1, 'azhar', 'azhar@gmail.com', '$2y$10$GYL4HlbvnjdM5NxUapoyn..I7F3rqs4zhc8kW4RbSC.zMZWD3PRjG'),
-(2, 'raihan', 'raihan@gmail.com', '$2y$10$hqbRn.As3r6.XJFHtJjgReg4niFo7bs8yUSNB65Hp/V71R/t7uURu'),
-(3, 'yapi', 'yapi@gmail.com', '$2y$10$SlWi/IcjouMh3dLO6wPDWONsIiGvEydT9N1fOKM.2z5Dtv3RFc8Wy'),
-(4, 'radhia', 'radhia@gmail.com', '$2y$10$xJnlerUgDKiAwvdPkpd1MuCVMlTka7TBJP5U35CTcvcD9ov1BCzTG'),
-(5, 'akmal', 'akmal@gmail.com', '$2y$10$imGjlcQ4bsUaFWDlpjR6lutS6KpW/xkrpVf4tkCKZJXksI2sBrQii'),
-(6, 'ramon', 'ramon@gmail.com', '$2y$10$OB2QV6lXaBrTmuApKPOlQe8kJD/Y9ViJ/K6KVTYnv6eocC.ClNc9S'),
-(7, 'ndaw', 'ndaw@gmail.com', '$2y$10$XkT.tgGUK52/5mL7T1nwc.f9Zlj0HOefgXaE5PmBlXEOKVJPqvXfG'),
-(8, 'fadhil', 'fadhil@gmail.com', '$2y$10$kYHEzUlYQ3ms3/6OGraf.ud6qdm/apu4A2h6RyWSH92ghA41C7v9e'),
-(9, 'tegar', 'tegar@gmail.com', '$2y$10$9LsO2NZgr9udXnFl4GTmRO28lcEAgRjKQJV1zcXnyAg0Z0iD8dtuG'),
-(10, 'yoan', 'yoan@gmail.com', '$2y$10$Oe5VDtE/.FFVm6bnXPgKA.5QrLLQjcp/FdNYLM7MO7aspoXVkmi3m'),
-(11, 'ripan', 'ripan@gmail.com', '$2y$10$DyfJxjbmeBX0EvlkOpaSzO8hT9xfZsd5dHVe4M4uLGGoQA9GMwfTm'),
-(12, 'haikal', 'haikal@gmail.com', '$2y$10$VFV3f0fkeZYY9/ExyV7Sw.rGQiVlDvfcE8oVWy/GGEiqsYepIRwgy');
+(1, 'hinzi', 'hinzi@gmail.com', '$2y$10$wbeMa0e6vY7GZsjn4xqkpe8bSbu5/AJZvIpme13QGfMH5QtHEd/8K'),
+(2, 'raihan', 'raihan@gmail.com', '$2y$10$k6hbixZFdbznxo48xLfuT.K9aorr6u9V0lNQZSlcRYDtr30g229am'),
+(3, 'yapi', 'yapi@gmail.com', '$2y$10$VJ5sjZ8u0SCZqqz/FMeAzu3qEN33ehAna.O0JZp4n3GaVDu09IhzK'),
+(4, 'radhia', 'radhia@gmail.com', '$2y$10$9nh4cT9.Co9im1nrVBE2HuhTw71r/o05CovWFRqfAKW0Sw4oummpO'),
+(5, 'akmal', 'akmal@gmail.com', '$2y$10$CFqQ5670kXaT9IzzWr7Me.nnAA5ALJweD74BnqjtMMPwkUc5O6DyW'),
+(6, 'ramon', 'ramon@gmail.com', '$2y$10$bYbCTtKmgGvHfT5CAX/WXOBPb7w.ssYjUU6WCIHPYynt5hvSNTlzW'),
+(7, 'ndaw', 'ndaw@gmail.com', '$2y$10$6.RitgTOgTUdUSWfuFBmq.lCIw6bpTZeotYsaU4snkiIogLeiY2Dq'),
+(8, 'fadhil', 'fadhil@gmail.com', '$2y$10$biRfwKsvjvsseff1xdf9le06aP61BwNjEmmv5qmuXGtORZQVBFVTW'),
+(9, 'tegar', 'tegar@gmail.com', '$2y$10$1AcvWuOCmV6emyOwWGzxme5jV9RYzH1nCWPz8n.IXUJo7Az7m9hnS'),
+(10, 'yoan', 'yoan@gmail.com', '$2y$10$0eUeQPTQq4V8rCJ5yv4hiOBCrZEpx6gyFyJIB.wY2eqL/IOriZKhu'),
+(11, 'ripan', 'ripan@gmail.com', '$2y$10$5yYWY0nZXBtW83FgswMy4OAoZ2oSpG/i7G64ko25C44yekMYA14yS'),
+(12, 'haikal', 'haikal@gmail.com', '$2y$10$DKPuC0z5qjPCtPKVhbqc8O5taOPUS4C4YLnj1MFM81ArihcVrSidm'),
+(14, 'test', 'test@gmail.com', '$2y$10$kS7he8skaYPpn28YDJbameIOG37u2A4p/5kstMzg1yKxKYzJBdZ4m');
 
 --
 -- Indexes for dumped tables
@@ -131,12 +154,19 @@ ALTER TABLE `content`
 ALTER TABLE `content` ADD FULLTEXT KEY `idx_content_musik` (`content_musik`);
 
 --
+-- Indexes for table `musik`
+--
+ALTER TABLE `musik`
+  ADD PRIMARY KEY (`musik_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`),
   ADD UNIQUE KEY `email` (`email_user`),
-  ADD UNIQUE KEY `username` (`username_user`);
+  ADD UNIQUE KEY `username_user` (`username_user`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -152,13 +182,29 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `content`
 --
 ALTER TABLE `content`
-  MODIFY `content_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `content_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `musik`
+--
+ALTER TABLE `musik`
+  MODIFY `musik_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `musik`
+--
+ALTER TABLE `musik`
+  ADD CONSTRAINT `musik_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

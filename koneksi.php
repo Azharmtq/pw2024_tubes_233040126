@@ -1,9 +1,8 @@
 <?php
-// Informasi koneksi database
-$host = 'localhost'; // Host database
-$user = 'root'; // Username database
-$password = ''; // Password database
-$database = 'pw2024_tubes_233040126'; // Nama database
+$host = 'localhost'; 
+$user = 'root'; 
+$password = ''; 
+$database = 'pw2024_tubes_233040126'; 
 
 // Membuat koneksi ke database
 $koneksi = mysqli_connect($host, $user, $password, $database);

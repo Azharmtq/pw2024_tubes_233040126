@@ -7,7 +7,7 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
 
 <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="light">
   <div class="container-fluid">
-    <a class="musikco nav-brand" href="<?php echo BASE_URL; ?>index.php">MUSIKCO</a>
+    <a class="musikco nav-brand" href="<?php echo BASE_URL; ?>index.php" style="font-weight: 600;">MUSIKCO</a>
     <button class="navbar-toggler bg-success" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -24,9 +24,9 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
         </li>
         <?php if ($isLoggedIn): ?>
             <?php if ($role === 'admin'): ?>
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="admin.php">Admin</a>
-                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo BASE_URL; ?>admin/admin.php">Admin</a>
+                </li>
             <?php endif; ?>
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo BASE_URL; ?>profile.php"><?php echo htmlspecialchars($username); ?></a>
