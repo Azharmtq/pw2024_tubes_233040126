@@ -16,6 +16,7 @@ include 'users.php';
 <html lang="en">
 <head>
     <?php include 'meta.php';?>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
     <?php include '../include/navbar.php';?>
@@ -41,8 +42,8 @@ include 'users.php';
                                         <td><?php echo $row['username_user']; ?></td>
                                         <td><?php echo $row['email_user']; ?></td>
                                         <td>
-                                        <a href="users_delete.php?id=<?php echo $row['user_id']; ?>">Hapus</a>
-                                        <a href="users_edit.php?id=<?php echo $row['user_id']; ?>">Edit</a>
+                                        <a href="users_delete.php?id=<?php echo $row['user_id']; ?>" onclick="return confirm('Apakah anda yakin untuk hapus data ini?')" ><i class="bi bi-trash3-fill" style="color: salmon; font-size:larger"></i></a>
+                                        <a href="users_edit.php?id=<?php echo $row['user_id']; ?>" onclick="return confirm('Apakah anda yakin untuk edit data ini?')"><i class="bi bi-pencil-square" style="color: white; font-size:larger;"></i></a>
                                         </td>
                                     </tr>
                                 <?php endwhile; ?>

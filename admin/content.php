@@ -55,6 +55,7 @@ ini_set('display_errors', 1);
 <html lang="en">
 <head>
     <?php include 'meta.php';?>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
     <?php include '../include/navbar.php';?>
@@ -102,8 +103,8 @@ ini_set('display_errors', 1);
                                         <td><?php echo $row['content_upload']; ?></td>
                                         <td><?php echo $row['content_release']; ?></td>
                                         <td>
-                                            <a href="./content_delete.php?id=<?php echo $row['content_id']; ?>">Hapus</a>
-                                            <a href="./content_edit.php?id=<?php echo $row['content_id']; ?>">Edit</a>
+                                            <a href="./content_delete.php?id=<?php echo $row['content_id']; ?>" onclick="return confirm('Apakah anda yakin untuk hapus data ini?')"><i class="bi bi-trash3-fill" style="color: salmon; font-size:larger"></i></a>
+                                            <a href="./content_edit.php?id=<?php echo $row['content_id']; ?>" onclick="return confirm('Apakah anda yakin untuk edit data ini?')"><i class="bi bi-pencil-square" style="color: white; font-size:larger;"></i></a>
                                         </td>
                                     </tr>
                                 <?php endwhile; ?>
@@ -114,27 +115,27 @@ ini_set('display_errors', 1);
                             <?php endif; ?>
                         </tbody>
                     </table>
-                    <div>
-                        <!-- tabel user -->
-                        <div class="table-responsive"> 
-                    <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <?php if ($totalContent > 0) : ?>
-                            <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
-                                <?php if ($i <= 3 || $i >= $totalPages - 2 || ($i >= $page - 1 && $i <= $page + 1)) : ?>
-                                    <li class="page-item <?php echo $i == $page ? 'active' : ''; ?>"><a class="page-link btn btn-outline-success" href="?page=<?php echo $i . ($search ? '&search=' . $search : '') . '&limit=' . $limit; ?>"><?php echo $i; ?></a></li>
-                                <?php elseif ($i == 4 && $page > 5) : ?>
-                                    <li class="page-item disabled"><a class="page-link btn btn-outline-success" href="#">...</a></li>
-                                <?php elseif ($i == $totalPages - 3 && $page < $totalPages - 4) : ?>
-                                    <li class="page-item disabled"><a class="page-link btn btn-outline-success" href="#">...</a></li>
-                                <?php endif; ?>
-                            <?php endfor; ?>
-                        <?php endif; ?>
-                    </ul>
-                    <a href="content_add.php" class="btn btn-success">Tambah Berita</a>
-                    <a href="admin.php" class="btn btn-success">Kembali</a>
-                </nav>  
-            </div>
+                </div>
+                <div>
+                    <!-- tabel user -->
+                    <div class="table-responsive"> 
+                <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <?php if ($totalContent > 0) : ?>
+                        <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
+                            <?php if ($i <= 3 || $i >= $totalPages - 2 || ($i >= $page - 1 && $i <= $page + 1)) : ?>
+                                <li class="page-item <?php echo $i == $page ? 'active' : ''; ?>"><a class="page-link btn btn-outline-success" href="?page=<?php echo $i . ($search ? '&search=' . $search : '') . '&limit=' . $limit; ?>"><?php echo $i; ?></a></li>
+                            <?php elseif ($i == 4 && $page > 5) : ?>
+                                <li class="page-item disabled"><a class="page-link btn btn-outline-success" href="#">...</a></li>
+                            <?php elseif ($i == $totalPages - 3 && $page < $totalPages - 4) : ?>
+                                <li class="page-item disabled"><a class="page-link btn btn-outline-success" href="#">...</a></li>
+                            <?php endif; ?>
+                        <?php endfor; ?>
+                    <?php endif; ?>
+                </ul>
+                <a href="content_add.php" class="btn btn-success">Tambah Berita</a>
+                <a href="admin.php" class="btn btn-success">Kembali</a>
+            </nav>  
         </div>
     </div>
 </div>

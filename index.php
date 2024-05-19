@@ -15,7 +15,7 @@ function getTotalContentCount($koneksi, $search = null) {//ambil jumlah seluruh 
 
 // Fungsi untuk mendapatkan data konten sesuai dengan halaman dan jumlah data per halaman
 function getContent($koneksi, $offset, $limit, $search = null) {
-    $query = "SELECT * FROM content";
+    $query = "SELECT content_id, content_title, content_picture, content_url, SUBSTRING(content_musik, 1, 200) AS content_musik FROM content";
     if ($search) {
         $query .= " WHERE content_title LIKE '%$search%' OR content_musik LIKE '%$search%'";
     }
@@ -43,39 +43,30 @@ $content = getContent($koneksi, $offset, $limit, $search);
 <html lang="en">
 <head>
     <?php include 'meta.php';?>
+    
 </head>
 <body>
     <?php include './include/navbar.php';?>
            <div id="utama" style="min-height: 100vh; background-image:url(./assets/img/macklemore_169.jpeg); background-position: center; background-repeat: no-repeat; background-size: cover;">
-            <div style="position: absolute; top: 50%; left: 0%; background:rgba(0, 0, 0, 0.9); padding:20px; border-radius:2px; color:white; width:30%; text-align:center; height:200px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
-                <h1>MUSIKCO</h1>
+            <div style="position: absolute; top: 50%; left: 0%; background:rgba(0, 0, 0, 0.9); padding:20px; border-radius:2px; color:white; min-width:300px; width: 40%; text-align:left; height:200px; display:flex; flex-direction:column;">
+                <h1 style="align-self: flex-start;">MUSIKCO</h1>
                 <h3>Cari Berita Musik Sesukamu</h3>
             </div>
            </div>
                 <h1>Apa Yang Kau Cari?</h1>
-                <div class="container-fluid wrap" style="display:flex; flex-wrap:wrap; flex-direction: row-reverse; padding:5vh 4vh;">
-                <div class="highlight" style="width:22%;">
-                <div class="list-group">
-                    <a href="#home" class="list-group-item list-group-item-action active" aria-current="true">
-                        Home
-                    </a>
-                    <a href="#populer" class="list-group-item list-group-item-action">Populer</a>
-                    <a href="#terbaru" class="list-group-item list-group-item-action">Terbaru</a>
-                    <a href="#terlama" class="list-group-item list-group-item-action">Terlama</a>
-                    </div>
-                </div>
-                <div class="container-fluid" id="home" style="width:78%; padding:0 0; margin:0 0; ">
-                        <div class="content" style="display: flex; flex-wrap: wrap; width:100%; gap:20px;">
+                <div class="container-fluid wrap" style="display:flex; flex-wrap:wrap; padding:10vh 5vh; gap: 10px;">
+                
+                <div class="container-sm" id="home" style="width:100%; padding:0 0; margin:0 0; ">
+                        <div class="content" style="display: flex; flex-wrap: wrap; width:100%; gap:20px; overflow:auto;">
                             <?php if ($totalContent > 0) : ?>
                                 <?php while ($row = mysqli_fetch_assoc($content)) : ?>
                                     <div class="card" style="width: fit-content; max-width: 400px;">
-                                        <div class="wrap_image" style="width:400px; height:400px; border: 2px solid black; border-radius:10px;">
-                                        <div style="width: 100%; height:100%; background-image: url(./assets/img/<?php echo $row['content_picture']; ?>);background-position: center;background-repeat: no-repeat;background-size: cover; border-radius:10px;">
-                                        </div>
+                                        <div class="wrap_image" style="border: 2px solid black; border-radius:10px; width:100%; height:300px;overflow:hidden;">
+                                        <img src="./assets/img/<?php echo $row['content_picture']; ?>" alt="" style="object-fit: cover; width:100%; height:300px;">
                                         </div>
                                         <h5 class="card-header"><?php echo $row['content_title']; ?></h5>
                                         <div class="card-body">
-                                            <p class="card-text"><?php echo $row['content_musik']; ?></p>
+                                            <p class="card-text"><?php echo $row['content_musik']; ?>...</p>
                                             <a href="<?php echo $row['content_url']; ?>" class="btn btn-success">Selengkapnya</a>
                                         </div>
                                         </div>
@@ -91,6 +82,37 @@ $content = getContent($koneksi, $offset, $limit, $search);
                             
                         </div>
                     </div>
+                    <div class="highlight" style="width:400px; height:fit-content;">
+                <div class="list-group">
+                    <a href="#home" class="list-group-item list-group-item-action active" aria-current="true">
+                        Home
+                    </a>
+
+                    <?php 
+                    function getAllContent($koneksi) {
+                        $query = "SELECT content_url, content_title FROM content";
+                        $result = mysqli_query($koneksi, $query);
+                        return $result;
+                    }
+                    // Fungsi untuk menampilkan semua data
+                    function displayAllContent($koneksi) {
+                        $content = getAllContent($koneksi);
+                        if ($content && mysqli_num_rows($content) > 0) {
+                            while ($row = mysqli_fetch_assoc($content)) {
+                    ?>
+                    <a href="<?php echo $row['content_url'];?>" class="list-group-item list-group-item-action"><?php echo $row['content_title'];?></a>
+                    <?php 
+                     }
+                    } else {
+                        echo 'Tidak ada data yang ditemukan.';
+                    }
+                }
+                
+                // Pemanggilan fungsi untuk menampilkan data
+                displayAllContent($koneksi);
+                    ?>
+                    </div>
+                </div>
                     </div>
                     <nav aria-label="Page navigation" style="display: flex; place-content: center; gap:10px;">
                     <ul class="pagination">

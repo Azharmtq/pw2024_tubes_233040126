@@ -24,7 +24,10 @@ include 'koneksi.php';
 </head>
 <body>
 <?php include './include/navbar.php';?>
-<form action="https://formspree.io/f/xqkrkbaa" method="POST" class="container-sm">
+<form action="https://formspree.io/f/xqkrkbaa" method="POST" class="container-sm" style="min-height: 80vh;">
+    <h1>Contact Us</h1>
+    <p style="text-align: center;">Silahkan kirim pesan untuk menghubungi</p>
+
 <div>
     <label for="email" class="form-label"> Your email: </label>
     <input type="email" name="email" id="email" class="form-control">
