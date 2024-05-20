@@ -18,9 +18,9 @@ include 'users.php';
     <?php include 'meta.php';?>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
-        @media print {
-            
-        }
+        /* @media print {
+         ini dari pak sandhika terkait jika halaman di print   
+        } */
     </style>
 </head>
 <body>
@@ -91,9 +91,10 @@ include 'users.php';
                         <?php endif; ?>
                     </ul>
                 </nav>
-                <div style="display: flex; gap: 10px;">
+                <div style="display: flex; gap: 10px; flex-wrap:wrap;">
                 <a href="users_add.php" class="l-konten btn btn-success">Tambah User</a>
                 <a href="content.php" class="l-konten btn btn-success">Kelola Konten</a>
+                <a href="cetak.php" target="_blank" class="l-konten btn btn-success"><i class="bi bi-printer" style="font-size:15px;"></i></a>
                 </div>
                 </div>
                 </div>

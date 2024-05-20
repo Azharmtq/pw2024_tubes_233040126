@@ -135,6 +135,7 @@ ini_set('display_errors', 1);
                 </ul>
                 <a href="content_add.php" class="btn btn-success">Tambah Berita</a>
                 <a href="admin.php" class="btn btn-success">Kembali</a>
+                <a href="cetak_content.php" target="_blank" class="btn btn-success"><i class="bi bi-printer" style="font-size:15px;"></i></a>
             </nav>  
         </div>
     </div>
