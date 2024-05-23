@@ -30,7 +30,7 @@ include 'users.php';
             <div class="container-lg">
                 <div class="user_table table-responsive"> 
                 <h1>DATA USER</h1>
-                    <input type="text" id="searchInput" placeholder="Cari" onkeyup="fetchData()">
+                    <input type="text" id="searchInputAjax" placeholder="Cari" onkeyup="fetchData()">
                     <select id="sortSelect" onchange="fetchData()">
                         <option value="user_id_asc">ID Terkecil</option>
                         <option value="username_user_asc">Username A to Z</option>
@@ -116,7 +116,7 @@ include 'users.php';
         }
 
         function fetchData() {
-            var search = document.getElementById('searchInput').value;
+            var search = document.getElementById('searchInputAjax').value;
             var sort = document.getElementById('sortSelect').value;
 
             var xhr = new XMLHttpRequest();
