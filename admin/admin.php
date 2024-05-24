@@ -17,6 +17,7 @@ include 'users.php';
 <head>
     <?php include 'meta.php';?>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <style>
         /* @media print {
          ini dari pak sandhika terkait jika halaman di print   
@@ -30,8 +31,10 @@ include 'users.php';
             <div class="container-lg">
                 <div class="user_table table-responsive"> 
                 <h1>DATA USER</h1>
-                    <input type="text" id="searchInputAjax" placeholder="Cari" onkeyup="fetchData()">
-                    <select id="sortSelect" onchange="fetchData()">
+                    <input type="text" id="searchInputAjax" placeholder="Cari">
+                    <!-- <input type="text" id="searchInputAjax" placeholder="Cari" onkeyup="fetchData()"> -->
+                    <select id="sortSelect">
+                    <!-- <select id="sortSelect" onchange="fetchData()"> -->
                         <option value="user_id_asc">ID Terkecil</option>
                         <option value="username_user_asc">Username A to Z</option>
                         <option value="username_user_desc   ">Username Z to A</option>
@@ -47,25 +50,10 @@ include 'users.php';
                             </tr>
                         </thead>
                         <tbody id="userTableBody">
-                            <?php if ($totalUsers > 0) : ?>
-                                <?php while ($row = mysqli_fetch_assoc($users)) : ?>
-                                    <tr>
-                                        <td><?php echo $row['user_id']; ?></td>
-                                        <td><?php echo $row['username_user']; ?></td>
-                                        <td><?php echo $row['email_user']; ?></td>
-                                        <td>
-                                            <a href="users_delete.php?id=<?php echo $row['user_id']; ?>" onclick="return confirm('Apakah anda yakin untuk hapus data ini?')"><i class="bi bi-trash3-fill" style="color: salmon; font-size:larger"></i></a>
-                                            <a href="users_edit.php?id=<?php echo $row['user_id']; ?>" onclick="return confirm('Apakah anda yakin untuk edit data ini?')"><i class="bi bi-pencil-square" style="color: white; font-size:larger;"></i></a>
-                                        </td>
-                                    </tr>
-                                <?php endwhile; ?>
-                            <?php else : ?>
-                                <tr>
-                                    <td colspan="4">Data tidak ditemukan.</td>
-                                </tr>
-                            <?php endif; ?>
+                           <!-- Data Dari Server -->
                         </tbody>
                     </table>
+                    <div id="pagination"></div>
                 </div>
 
                 <div class="list_user table-responsive">
@@ -81,22 +69,6 @@ include 'users.php';
                         <option value="100" <?php echo $limit == 100 ? 'selected' : ''; ?>>100</option>
                     </select>
                 </div>
-                <!-- Paginasi -->
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <?php if ($totalUsers > 0) : ?>
-                            <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
-                                <?php if ($i <= 3 || $i >= $totalPages - 2 || ($i >= $page - 1 && $i <= $page + 1)) : ?>
-                                    <li class="page-item <?php echo $i == $page ? 'active' : ''; ?>"><a class="page-link btn btn-outline-success" href="?page=<?php echo $i . ($search ? '&search=' . $search : '') . '&limit=' . $limit; ?>"><?php echo $i; ?></a></li>
-                                <?php elseif ($i == 4 && $page > 5) : ?>
-                                    <li class="page-item disabled"><a class="page-link btn btn-outline-success" href="#">...</a></li>
-                                <?php elseif ($i == $totalPages - 3 && $page < $totalPages - 4) : ?>
-                                    <li class="page-item disabled"><a class="page-link btn btn-outline-success" href="#">...</a></li>
-                                <?php endif; ?>
-                            <?php endfor; ?>
-                        <?php endif; ?>
-                    </ul>
-                </nav>
                 </div>
                 <div class="table-responsive" style="display: flex; gap: 10px; flex-wrap:wrap;">
                 <a href="users_add.php" class="l-konten btn btn-success">Tambah User</a>
@@ -110,24 +82,74 @@ include 'users.php';
     <?php include '../include/footer.php';?>
     <?php include 'script.php';?>
     <script>
+        // function changeLimit() {
+        //     var limit = document.getElementById("limitSelect").value;
+        //     window.location.href = "?limit=" + limit;
+        // }
+
+        // function fetchData() {
+        //     var search = document.getElementById('searchInputAjax').value;
+        //     var sort = document.getElementById('sortSelect').value;
+
+        //     var xhr = new XMLHttpRequest();
+        //     xhr.open('GET', 'ajax_fetch_users.php?search=' + search + '&sort=' + sort, true);
+        //     xhr.onload = function () {
+        //         if (xhr.status === 200) {
+        //             document.getElementById('userTableBody').innerHTML = xhr.responseText;
+        //         }
+        //     };
+        //     xhr.send();
+        // }
+
+        //         $(document).ready(function() {
+        //     $.ajax({
+        //         url: 'ajax_fetch_users.php',
+        //         type: 'GET',
+        //         success: function(response) {
+        //             $('#userTableBody').html(response);
+        //         },
+        //         error: function(xhr, status, error) {
+        //             console.error('AJAX Error: ' + status + error);
+        //         }
+        //     });
+        // });
+
         function changeLimit() {
-            var limit = document.getElementById("limitSelect").value;
-            window.location.href = "?limit=" + limit;
+            var limit = $('#limitSelect').val();
+            fetchData(1, limit);
         }
 
-        function fetchData() {
-            var search = document.getElementById('searchInputAjax').value;
-            var sort = document.getElementById('sortSelect').value;
+        function fetchData(page = 1, limit = $('#limitSelect').val()) {
+            var search = $('#searchInputAjax').val();
+            var sort = $('#sortSelect').val();
 
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'ajax_fetch_users.php?search=' + search + '&sort=' + sort, true);
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    document.getElementById('userTableBody').innerHTML = xhr.responseText;
+            $.ajax({
+                url: 'ajax_fetch_users.php',
+                type: 'GET',
+                data: {
+                    search: search,
+                    sort: sort,
+                    page: page,
+                    limit: limit
+                },
+                dataType: 'json',
+                success: function(response) {
+                    $('#userTableBody').html(response.tableContent);
+                    $('#pagination').html(response.paginationContent);
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX Error: ' + status + ' ' + error);
                 }
-            };
-            xhr.send();
+            });
         }
+
+        $(document).ready(function() {
+            fetchData();
+
+            $('#searchInputAjax, #sortSelect').on('input change', function() {
+                fetchData();
+            });
+        });
     </script>
 </body>
 </html>

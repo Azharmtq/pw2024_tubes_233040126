@@ -14,40 +14,42 @@ function getTotalContentCount($koneksi, $search = null) {
 }
 
 // Fungsi untuk mendapatkan data konten sesuai dengan halaman dan jumlah data per halaman
-function getContent($koneksi, $offset, $limit, $search = null) {
+function getContent($koneksi, $offset, $limit, $search = null, $sort = 'user_id_asc') {
     $query = "SELECT * FROM content";
     if ($search) {
         $query .= " WHERE content_title LIKE '%$search%'";
+    }
+    if ($sort === 'username_user_asc') {
+        $query .= " ORDER BY username_user ASC";
+    } elseif ($sort === 'username_user_desc') {
+        $query .= " ORDER BY username_user DESC";
+    } elseif ($sort === 'user_id_asc') {
+        $query .= " ORDER BY user_id ASC";
+    } elseif ($sort === 'user_id_desc') {
+        $query .= " ORDER BY user_id DESC";
     }
     $query .= " LIMIT $offset, $limit";
     $result = mysqli_query($koneksi, $query);
     return $result;
 }
 
+$sort = isset($_GET['sort']) ? $_GET['sort'] : 'user_id_asc';
 // Ambil nilai halaman saat ini atau set ke 1 jika tidak ada
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
-
 // Jumlah data per halaman
 $limit = isset($_GET['limit']) ? $_GET['limit'] : 5;
-
 // Mendapatkan total jumlah data konten
 $search = isset($_GET['search']) ? $_GET['search'] : null;
 $totalContent = getTotalContentCount($koneksi, $search);
-
 // Hitung total halaman
 $totalPages = ceil($totalContent / $limit);
-
 // Pastikan halaman yang diminta tidak melebihi total halaman yang ada
 $page = max(1, min($page, $totalPages));
-
 // Hitung offset untuk query database berdasarkan halaman saat ini
 $offset = ($page - 1) * $limit;
-
 // Mendapatkan data konten untuk halaman saat ini
 $content = getContent($koneksi, $offset, $limit, $search);
-
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-
 error_reporting(E_ALL); 
 ini_set('display_errors', 1);
 ?>
@@ -78,6 +80,16 @@ ini_set('display_errors', 1);
                         <option value="100" <?php echo $limit == 100 ? 'selected' : ''; ?>>100</option>
                     </select>
                 </div>
+                <!-- Dropdown ENd -->
+                <!-- Ajax -->
+                <input type="text" id="searchInputAjax" placeholder="Cari" onkeyup="fetchData()">
+                    <select id="sortSelect" onchange="fetchData()">
+                        <option value="user_id_asc">ID Terkecil</option>
+                        <option value="username_user_asc">Username A to Z</option>
+                        <option value="username_user_desc   ">Username Z to A</option>
+                        <option value="user_id_desc">ID Terbesar</option>
+                    </select>
+                <!-- Ajax end -->
                 <table class="table table-dark">
                         <thead>
                             <tr>
@@ -91,7 +103,7 @@ ini_set('display_errors', 1);
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="contentTableBody">
                             <?php if ($totalContent > 0) : ?>
                                 <?php while ($row = mysqli_fetch_assoc($content)) : ?>
                                     <tr>
@@ -153,6 +165,19 @@ ini_set('display_errors', 1);
         function search() {
             var search = document.getElementById("searchInput").value;
             window.location.href = "?search=" + search;
+        }
+        function fetchData() {
+            var search = document.getElementById('searchInputAjax').value;
+            var sort = document.getElementById('sortSelect').value;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'ajax_fetch_users.php?search=' + search + '&sort=' + sort, true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    document.getElementById('contentTableBody').innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send();
         }
     </script>
 </body>
