@@ -1,7 +1,5 @@
 <?php
 session_start();
-// Definisikan basis URL
-define('BASE_URL', 'http://localhost/PW2024_TUBES_233040126/'); // Sesuaikan dengan URL aplikasi Anda
 include 'koneksi.php';
 // Fungsi untuk mendapatkan jumlah total data konten
 ?>

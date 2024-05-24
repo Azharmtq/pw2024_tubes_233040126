@@ -45,4 +45,3 @@ if ($totalPages > 1) {
 
 // Return JSON response
 echo json_encode(['tableContent' => $tableContent, 'paginationContent' => $paginationContent]);
-?>

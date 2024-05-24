@@ -3,6 +3,7 @@
 $isLoggedIn = isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'];
 $role = isset($_SESSION['role']) ? $_SESSION['role'] : '';
 $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
+define('BASE_URL', 'http://localhost/pw2024_tubes_233040126/');
 ?>
 
 <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="light">

@@ -49,4 +49,3 @@ $html .= '
 
 $mpdf->WriteHTML($html);
 $mpdf->Output('daftar-user.pdf', 'I');
-?>
