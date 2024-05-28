@@ -1,6 +1,11 @@
 <?php
 include 'koneksi.php'; // Pastikan file koneksi.php sudah benar
 define('BASE_URL', 'http://localhost/PW2024_TUBES_233040126/');
+session_start();
+if (!isset($_SESSION['user_logged_in']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ./login.php");
+    exit();
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -37,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 </head>
 <body>
-    <div class="form container-fluid">
+    <div class="form container-fluid" style="min-height:100vh;">
         <form method="post">
             <div class="form_place">
                 <h1>Tambah Admin</h1>
@@ -45,8 +50,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="text" id="username" name="username" required>
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
-                <input type="submit" value="Tambahkan">
-                <a href="<?php echo BASE_URL; ?>admin/admin.php" class="btn btn-primary" style="font-size: larger;">Kembali</a>
+                <div class="container-fluid mt-3" style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                    <button type="submit" class="btn btn-success" style="width: fit-content; font-size:larger;">Tambah</button>
+                    <a href="<?php echo BASE_URL; ?>admin/admin.php" class="btn btn-primary" style="font-size: larger;">Kembali</a>
+                </div>
             </div>
         </form>
     </div>

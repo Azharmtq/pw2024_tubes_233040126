@@ -48,9 +48,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="email" id="email" name="email" required>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
-            <input type="submit" value="Tambahkan">
-            <a href="<?php echo BASE_URL; ?>admin/admin.php" class="btn btn-primary" style="font-size: larger;">kembali</a>
-            <a href="<?php echo BASE_URL; ?>admin/admin_add.php" class="btn btn-primary" style="font-size: larger;">tambah admin</a>
+            <input type="submit" class="btn btn-success" value="Tambah User">
+            <div class="container-fluid" style="display: flex;flex-direction: row; gap:20px;">
+                <a href="<?php echo BASE_URL; ?>admin/admin.php" class="btn btn-primary mt-3" style="font-size: larger;">Dashboard</a>
+                <a href="<?php echo BASE_URL; ?>admin/admin_add.php" class="btn btn-primary mt-3" style="font-size: larger;">Superuser</a>
+            </div>
             </div>
         </form>
     </div>

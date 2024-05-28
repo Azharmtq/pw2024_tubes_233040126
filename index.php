@@ -69,7 +69,6 @@ $content = getContent($koneksi, $offset, $limit, $search);
                                             <a href="<?php echo $row['content_url']; ?>" class="btn btn-success">Selengkapnya</a>
                                         </div>
                                         </div>
-                                        
                                 <?php endwhile; ?>
                             <?php else : ?>
                                 <tr>

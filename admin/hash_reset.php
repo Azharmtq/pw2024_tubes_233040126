@@ -1,6 +1,10 @@
 <?php
 include 'koneksi.php'; // Pastikan ini adalah path yang benar ke file koneksi database Anda
-
+session_start();
+if (!isset($_SESSION['user_logged_in']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ./login.php");
+    exit();
+}
 // Reset dan hash password untuk tabel users
 $queryUsers = "SELECT user_id, username_user FROM users";
 $resultUsers = mysqli_query($koneksi, $queryUsers);

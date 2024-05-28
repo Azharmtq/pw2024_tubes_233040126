@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php include 'meta.php';?>
 </head>
 <body>
-    <div class="form container-fluid">
+    <div class="form container-fluid" style="min-height: 100vh;">
         <form method="post">
             <div class="form_place container-lg" style="margin: 1% auto; width: 90%; padding: 1%;">
                 <h1>Login User</h1>

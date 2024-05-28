@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php include 'meta.php';?>
 </head>
 <body>
-    <div class="form container-fluid">
+    <div class="form container-fluid" style="min-height: 100vh;">
         <form method="post">
             <div class="form_place">
                 <h1>Login Admin</h1>
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="password" id="password" name="password" style="text-align: center; width: 60%; margin: 0 auto;" required>
                 <div style="display: flex; justify-content: space-evenly; align-items: center; flex-direction: row; width: 60%; margin: 10px auto;">
                 <input type="submit" value="Login" class="btn btn-success" style="font-size: larger; width: fit-content;">
-                <a href="<?php echo BASE_URL; ?>index.php" class="btn btn-primary" style="font-size: larger; width: fit-content; place-content: center; height: 100%;">Home</a>
+                <a href="<?php echo BASE_URL; ?>index.php" class="btn btn-primary" style="font-size: larger; width: fit-content; padding:12px; height: 100%;">Home</a>
                 </div>
             </div>
         </form>
