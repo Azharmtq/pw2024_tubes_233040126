@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Lokasi penyimpanan file gambar
 $uploadDirectory = '../assets/img/';
 
@@ -43,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
             // Lakukan operasi INSERT INTO ke dalam database untuk menyimpan informasi konten beserta nama file gambar
             // Contoh:
             include 'koneksi.php'; // Sertakan file koneksi.php
+            $admin_id = $_POST['admin_id'];
             $contentTitle = $_POST['content_title'];
             $contentMusik = $_POST['content_musik'];
             $contentUrl = $_POST['content_url'];
@@ -51,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
             $contentPicture = $fileName; // Nama file gambar yang diunggah
             
             // Query untuk menambah data konten ke database
-            $query = "INSERT INTO `content` (`content_title`, `content_musik`, `content_url`, `content_picture`, `content_upload`, `content_release`) VALUES ('$contentTitle', '$contentMusik', '$contentUrl', '$contentPicture', '$contentUpload', '$contentRelease')";
+            $query = "INSERT INTO `content` (`content_title`, `content_musik`, `content_url`, `content_picture`, `content_upload`, `content_release`, `admin_id`) VALUES ('$contentTitle', '$contentMusik', '$contentUrl', '$contentPicture', '$contentUpload', '$contentRelease', '$admin_id')";
                     
             // Eksekusi query insert
             if (mysqli_query($koneksi, $query)) {
@@ -88,23 +90,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
             <h2>Tambah Konten</h2>
         <div>
             <label for="contentTitle">Judul Konten:</label>
-            <input type="text" id="contentTitle" name="content_title">
+            <input type="text" id="contentTitle" name="content_title" required>
         </div>
         <div>
             <label for="contentMusik">Sinopsis Musik:</label>
-            <textarea id="contentMusik" name="content_musik" ></textarea>
+            <textarea id="contentMusik" name="content_musik" required></textarea>
         </div>
         <div>
             <label for="contentUrl">URL Sumber:</label>
-            <input type="text" id="contentUrl" name="content_url">
+            <input type="text" id="contentUrl" name="content_url" required>
+        </div>
+        <div>
+            <label for="admin_id">admin_id</label>
+            <input type="number" id="admin_id" name="admin_id" value="" required>
         </div>
         <div>
             <label for="contentRelease" style="place-content:start ;">Tanggal Rilis:</label>
-            <input type="date" id="contentRelease" name="content_release" style="width: fit-content;">
+            <input type="date" id="contentRelease" name="content_release" style="width: fit-content;" required>
         </div>
         <div>
             <label for="image">Unggah Gambar:</label>
-            <input type="file" id="imageInput" name="image" accept="image/jpeg, image/png, image/gif, image/webp">
+            <input type="file" id="imageInput" name="image" accept="image/jpeg, image/png, image/gif, image/webp" required>
             <img id="imagePreview" src="#" alt="Preview" style="display: Block;">
         </div>
         <button type="submit" class="btn btn-success">Tambah Konten</button>
@@ -139,4 +145,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
     <?php include 'script.php';?>
 </body>
 </html>
-

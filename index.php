@@ -47,7 +47,7 @@ $content = getContent($koneksi, $offset, $limit, $search);
 <body>
     <?php include './include/navbar.php';?>
            <div id="utama" style="min-height: 100vh; background-image:url(./assets/img/macklemore_169.jpeg); background-position: center; background-repeat: no-repeat; background-size: cover;">
-            <div style="position: absolute; top: 50%; left: 0%; background:rgba(0, 0, 0, 0.9); padding:20px; border-radius:2px; color:white; min-width:300px; width: 40%; text-align:left; height:200px; display:flex; flex-direction:column;">
+            <div style="position: absolute; top: 50%; left: 0%; padding:20px; border-radius:2px; color:white; min-width:300px; width: 40%; text-align:left; height:200px; display:flex; flex-direction:column;">
                 <h1 style="align-self: flex-start;">MUSIKCO</h1>
                 <h3>Cari Berita Musik Sesukamu</h3>
             </div>
@@ -85,7 +85,6 @@ $content = getContent($koneksi, $offset, $limit, $search);
                     <a href="#home" class="list-group-item list-group-item-action active" aria-current="true">
                         Home
                     </a>
-
                     <?php 
                     // Fungsi untuk mendapatkan semua konten
                     function getAllContent($koneksi, $search = null) {
