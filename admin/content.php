@@ -24,9 +24,10 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['role'] !== 'admin') {
             <div class="container">
                 
                     <h1>KONTEN</h1>
-                    <div class="option" style="display:flex; padding:1vh 1vh; 300px;">
+                    <div class="option" style="display:flex; padding:1vh 1vh;">
                     <input type="text" id="searchInputAjax" placeholder="Cari" style="width:100px;">
                     <select id="sortSelect">
+                        <option value="content_id_asc">Sort BY ID</option>
                         <option value="content_upload_asc">Upload Asc</option>
                         <option value="content_upload_desc">Upload Desc</option>
                         <option value="content_release_asc">Release Asc</option>
@@ -46,7 +47,7 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['role'] !== 'admin') {
                     <table class="table table-dark">
                         <thead>
                             <tr>
-                                <th scope="col">ID</th>
+                                <th scope="col">No.</th>
                                 <th scope="col">Judul</th>
                                 <th scope="col">Sinopsis</th>
                                 <th scope="col">Url Sumber</th>

@@ -3,12 +3,14 @@ include 'koneksi.php';
 
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 $sort = isset($_GET['sort']) ? $_GET['sort'] : 'content_upload_asc';
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 5;
+$page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+$limit = isset($_GET['limit']) ? (int) $_GET['limit'] : 5;
 $offset = ($page - 1) * $limit;
+$x = $offset + 1;
 
 // Fungsi untuk mendapatkan data konten
-function getContent($koneksi, $offset, $limit, $search, $sort) {
+function getContent($koneksi, $offset, $limit, $search, $sort)
+{
     $search = mysqli_real_escape_string($koneksi, $search);
     $orderBy = '';
 
@@ -25,8 +27,11 @@ function getContent($koneksi, $offset, $limit, $search, $sort) {
         case 'content_release_desc':
             $orderBy = 'content_release DESC';
             break;
+        case 'content_id_asc':
+            $orderBy = 'content_id ASC';
+            break;
         default:
-            $orderBy = 'content_upload ASC';
+            $orderBy = 'content_id ASC';
             break;
     }
 
@@ -35,7 +40,8 @@ function getContent($koneksi, $offset, $limit, $search, $sort) {
 }
 
 // Fungsi untuk mendapatkan jumlah total konten
-function getTotalContentCount($koneksi, $search) {
+function getTotalContentCount($koneksi, $search)
+{
     $search = mysqli_real_escape_string($koneksi, $search);
     $query = "SELECT COUNT(*) as count FROM content WHERE content_title LIKE '%$search%'";
     $result = mysqli_query($koneksi, $query);
@@ -53,7 +59,7 @@ $paginationContent_musik = '';
 if (mysqli_num_rows($content) > 0) {
     while ($row = mysqli_fetch_assoc($content)) {
         $tableContent_musik .= '<tr>';
-        $tableContent_musik .= '<td>' . $row['content_id'] . '</td>';
+        $tableContent_musik .= '<td>' . $x++ . '</td>';
         $tableContent_musik .= '<td>' . $row['content_title'] . '</td>';
         $tableContent_musik .= '<td>' . $row['content_musik'] . '</td>';
         $tableContent_musik .= '<td style="widht:100px !important;">' . $row['content_url'] . '</td>';
@@ -81,4 +87,3 @@ if ($totalPages > 1) {
 }
 
 echo json_encode(['tableContent_musik' => $tableContent_musik, 'paginationContent_musik' => $paginationContent_musik]);
-?>
