@@ -110,7 +110,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
         </div>
         <div>
             <label for="image">Unggah Gambar:</label>
-            <input type="file" id="imageInput" name="image" accept="image/jpeg, image/png, image/gif, image/webp" required>
+            <input type="file" id="imageInput" name="image" accept=".jpeg, .png, .gif, .webp, .jpg" required>
+            <!-- image/jpeg, image/png, image/gif, image/webp, image/jpg --> 
             <img id="imagePreview" src="#" alt="Preview" style="display: Block;">
         </div>
         <button type="submit" class="btn btn-success">Tambah Konten</button>
