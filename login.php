@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'koneksi.php'; // Pastikan ini adalah path yang benar ke file koneksi database Anda
-define('BASE_URL', 'http://localhost/PW2024_TUBES_233040126/');
+define('BASE_URL', 'http://localhost/pw2024_tubes_233040126/');
 
 $error = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

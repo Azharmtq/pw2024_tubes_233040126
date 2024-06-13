@@ -1,6 +1,6 @@
 <?php
 include 'koneksi.php';
-define('BASE_URL', 'http://localhost/PW2024_TUBES_233040126/');
+define('BASE_URL', 'http://localhost/pw2024_tubes_233040126/');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];

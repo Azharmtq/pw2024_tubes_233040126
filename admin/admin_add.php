@@ -1,6 +1,6 @@
 <?php
 include 'koneksi.php'; // Pastikan file koneksi.php sudah benar
-define('BASE_URL', 'http://localhost/PW2024_TUBES_233040126/');
+define('BASE_URL', 'http://localhost/pw2024_tubes_233040126/');
 session_start();
 if (!isset($_SESSION['user_logged_in']) || $_SESSION['role'] !== 'admin') {
     header("Location: ./login.php");

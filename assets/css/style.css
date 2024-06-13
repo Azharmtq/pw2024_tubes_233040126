@@ -95,7 +95,7 @@ tr td img {
 }
 
 .form_place a{
-    width: fit-content;;
+    width: fit-content;
 }
 
 .list_user {
@@ -120,7 +120,7 @@ tr td img {
 }
 .footer a  svg{
     fill: white;
-    scale: 2;
+    scale: 1;
     margin: 20px;
 }
 .footer a {
